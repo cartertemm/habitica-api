@@ -73,3 +73,20 @@ values = (
 	"better",
 	"best",
 )
+
+frequencies = (
+	"daily",
+	"weekly",
+	"monthly",
+	"yearly"
+)
+
+repeat_days = (
+	"su",
+	"m",
+	"t",
+	"w",
+	"th",
+	"f",
+	"s"
+)
