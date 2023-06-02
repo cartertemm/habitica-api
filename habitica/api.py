@@ -71,12 +71,12 @@ class HabiticaAPI:
 			response["data"].append(from_dict(Task, item))
 		return response
 
-	def create_task(self, task_type, text, **kwargs):
-		if task_type not in self.create_task_types:
+	def create_task(self, type, text, **kwargs):
+		if type not in create_task_types:
 			raise ValueError(
 				f"Invalid task type {task_type}. Valid task types are: {', '.join(self.create_task_types)}"
 			)
-		data = {"type": task_type, "text": text, **kwargs}
+		data = {"type": type, "text": text, **kwargs}
 		return self._api_request("post", "tasks/user", json=data)
 
 	def delete_task(self, task_id):
