@@ -43,6 +43,13 @@ class HabiticaAPI:
 	def content(self):
 		return api_request("get", "content")
 
+	def cron(self):
+		"""Run cron
+		This causes cron to run. It assumes that the user has already been shown the Record Yesterday's Activity ("Check off any Dailies you did yesterday") screen and so it will immediately apply damage for incomplete due Dailies.
+		Make sure this function is only used if a response from a call to `get_user()` returns a true value for needsCron"""
+		return self._api_request("post", "cron")
+
+
 	def get_user(self):
 		response = self._api_request("get", "user")
 		data = response["data"]
