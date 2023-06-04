@@ -57,14 +57,22 @@ class Task(Jsonable):
 	def __str__(self):
 		value_description = get_value_description(self.value)
 		if self.type == "habit":
-			return f"{self.text}, value: {value_description}"
+			text = f"{self.text}, value: {value_description}"
 		elif self.type == "todo":
 			complete = "complete" if self.completed else "incomplete"
-			return f"{complete}, {self.text}, value: {value_description}"
+			text = f"{complete}, {self.text}, value: {value_description}"
 		elif self.type == "daily":
 			due = "due" if not self.completed else "completed"
-			return f"{due}, {self.text}, value: {value_description}"
-		return self.text
+			text = f"{due}, {self.text}, value: {value_description}"
+		else:
+			text = self.text
+		if self.notes:
+			text += ", "+self.notes
+		clen = len(self.checklist) if self.checklist else 0
+		if clen > 0:
+			item = "item" if clen == 1 else "items"
+			text += f", {clen} checklist {item}"
+		return text
 
 
 @dataclass
