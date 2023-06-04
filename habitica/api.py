@@ -74,7 +74,12 @@ class HabiticaAPI:
 	def create_task(self, type, text, **kwargs):
 		if type not in create_task_types:
 			raise ValueError(
-				f"Invalid task type {task_type}. Valid task types are: {', '.join(self.create_task_types)}"
+				f"Invalid task type {task_type}. Valid task types are: {', '.join(create_task_types)}"
+			)
+		attribute = kwargs.get("attribute", "")
+		if attribute and attribute not in user_attributes:
+			raise ValueError(
+				f"Invalid attribute {attribute}. Valid attributes are: {', '.join(user_attributes)}"
 			)
 		data = {"type": type, "text": text, **kwargs}
 		return self._api_request("post", "tasks/user", json=data)
@@ -84,6 +89,11 @@ class HabiticaAPI:
 		return self._api_request("delete", path)
 
 	def update_task(self, task_id, **kwargs):
+		attribute = kwargs.get("attribute", "")
+		if attribute and attribute not in user_attributes:
+			raise ValueError(
+				f"Invalid attribute {attribute}. Valid attributes are: {', '.join(user_attributes)}"
+			)
 		path = f"tasks/{task_id}"
 		return self._api_request("put", path, json=kwargs)
 

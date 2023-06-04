@@ -1,8 +1,9 @@
 base_url = "https://habitica.com"
 base_audio_url = "https://habitica.com/static/audio/"
 base_params = "/api/v4/"
-valid_task_types = ["habits", "dailys", "todos", "rewards"]
-create_task_types = ["habit", "daily", "todo", "reward"]
+valid_task_types = ("habits", "dailys", "todos", "rewards")
+create_task_types = ("habit", "daily", "todo", "reward")
+user_attributes = ("str", "int", "per", "con")
 
 themes = (
 	("Daniel the Bard", "danielTheBard"),
