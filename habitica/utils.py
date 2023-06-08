@@ -12,16 +12,16 @@ def get_value_description(value):
 def _get_n(value):
 	if value > 10:
 		n = 6
-	elif value > 5:
+	elif value >= 5:
 		n = 5
-	elif value > 1:
+	elif value >= 1:
 		n = 4
-	elif value > -1:
+	elif value >= -1:
 		n = 3
-	elif value > -10:
-		n = 4
-	elif value > -20:
-		n = 5
+	elif value >= -10:
+		n = 2
+	elif value >= -20:
+		n = 1
 	else:
-		n = 6
+		n = 0
 	return n
