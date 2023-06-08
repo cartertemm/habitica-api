@@ -177,10 +177,13 @@ class User(Jsonable):
 				str: A formatted explanation of what changed.
 		"""
 		final = []
-		stats = ["hp", "mp", "exp", "points"]
+		stats = ["hp", "mp", "exp", "points", "gp"]
 		lvl = other_stats.lvl - self.stats.lvl
 		if lvl > 0:
 			final.append(f"level increased by {lvl}")
+			stats.remove("exp")
+		elif lvl < 0:
+			final.append(f"level decreased by {lvl*-1}")
 			stats.remove("exp")
 		for stat in stats:
 			value = getattr(other_stats, stat) - getattr(self.stats, stat)
